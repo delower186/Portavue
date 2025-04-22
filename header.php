@@ -26,7 +26,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="<?php echo get_bloginfo('home'); ?>" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
          <?php 
             if(function_exists('the_custom_logo')){
@@ -39,7 +39,7 @@
             }
          ?>
         <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">Portavue</h1>
+        <h1 class="sitename"><?php echo get_bloginfo('name'); ?></h1>
       </a>
 
       <nav id="navmenu" class="navmenu">

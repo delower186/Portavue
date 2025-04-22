@@ -1,4 +1,6 @@
 <?PHP
+require_once(get_template_directory() . "/inc/custom_post_type.php");
+
 
 function portavue_theme_support(){
     // adds dynamic title tag support
@@ -6,6 +8,9 @@ function portavue_theme_support(){
 
     // custom logo
     add_theme_support('custom-logo');
+
+    // featured image support to portfolio post type
+    add_theme_support( 'post-thumbnails' );
 }
 
 add_action( "after_setup_theme", "portavue_theme_support");
@@ -66,3 +71,11 @@ function portavue_register_scripts(){
 }
 
 add_action( "wp_enqueue_scripts", "portavue_register_scripts");
+
+function portavue_excerpt_limit($limit, $contents){
+    $excerpt = strip_tags($contents);
+    if (strlen($excerpt) > $limit) {
+        $excerpt = substr($excerpt, 0, $limit) . '...';
+    }
+    return $excerpt;
+}
