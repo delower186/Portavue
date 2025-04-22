@@ -31,7 +31,7 @@
           </div>
           <div class="col-lg-6">
             <div class="hero-image">
-              <img src="assets/img/profile/profile-1.webp" alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">
+              <img src='<?php echo get_template_directory_uri()."/assets/img/profile/profile-1.webp"; ?>' alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">
               <div class="shape-1"></div>
               <div class="shape-2"></div>
             </div>

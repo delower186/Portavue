@@ -1988,7 +1988,7 @@ section,
 /*--------------------------------------------------------------
 # CTA Buttons
 --------------------------------------------------------------*/
-.cta-buttons {
+.cta-b {
   display: flex;
   gap: 1rem;
   margin-bottom: 3rem;
@@ -1996,13 +1996,13 @@ section,
 }
 
 @media (max-width: 576px) {
-  .cta-buttons {
+  .cta-b  {
     flex-direction: column;
     align-items: center;
   }
 }
 
-.cta-buttons .btn {
+.cta-b .btn {
   padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 500;
@@ -2010,25 +2010,25 @@ section,
   transition: all 0.3s ease;
 }
 
-.cta-buttons .btn.btn-primary {
+.cta-b .btn.btn-primary {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: var(--contrast-color);
 }
 
-.cta-buttons .btn.btn-primary:hover {
+.cta-b .btn.btn-primary:hover {
   background-color: color-mix(in srgb, var(--accent-color), transparent 15%);
   border-color: color-mix(in srgb, var(--accent-color), transparent 15%);
   transform: translateY(-2px);
 }
 
-.cta-buttons .btn.btn-outline {
+.cta-b .btn.btn-outline {
   border: 2px solid color-mix(in srgb, var(--accent-color), transparent 70%);
   color: var(--accent-color);
   background: transparent;
 }
 
-.cta-buttons .btn.btn-outline:hover {
+.cta-b .btn.btn-outline:hover {
   background-color: var(--accent-color);
   color: var(--contrast-color);
   transform: translateY(-2px);
