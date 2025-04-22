@@ -3,6 +3,9 @@
 function portavue_theme_support(){
     // adds dynamic title tag support
     add_theme_support('title-tag');
+
+    // custom logo
+    add_theme_support('custom-logo');
 }
 
 add_action( "after_setup_theme", "portavue_theme_support");
@@ -10,7 +13,7 @@ add_action( "after_setup_theme", "portavue_theme_support");
 function portavue_menus(){
 
     $locations = [
-        'primary' => "Desktop Top"
+        'primary'       => "Header Menu",
     ];
 
     register_nav_menus($locations);

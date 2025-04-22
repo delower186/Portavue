@@ -28,6 +28,16 @@
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
+         <?php 
+            if(function_exists('the_custom_logo')){
+                //the_custom_logo();
+
+                $custom_logo_id = get_theme_mod('custom_logo');
+                $logo = wp_get_attachment_image_src($custom_logo_id);
+
+                echo '<img src="'.$logo[0].'" alt="logo">';
+            }
+         ?>
         <!-- <img src="assets/img/logo.webp" alt=""> -->
         <h1 class="sitename">Portavue</h1>
       </a>
@@ -42,7 +52,7 @@
                     'theme_location' => 'primary'
                 ]
 
-                )
+            )
         ?>
 
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
