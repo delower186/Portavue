@@ -33,14 +33,18 @@
       </a>
 
       <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#resume">Resume</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <?php 
+            wp_nav_menu( 
+
+                [
+                    'menu' => 'primary',
+                    'container' => '',
+                    'theme_location' => 'primary'
+                ]
+
+                )
+        ?>
+
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 

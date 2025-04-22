@@ -7,6 +7,18 @@ function portavue_theme_support(){
 
 add_action( "after_setup_theme", "portavue_theme_support");
 
+function portavue_menus(){
+
+    $locations = [
+        'primary' => "Desktop Top"
+    ];
+
+    register_nav_menus($locations);
+
+}
+
+add_action( "init", "portavue_menus");
+
 function portavue_register_styles(){
 
     $version = wp_get_theme()->get('Version');
