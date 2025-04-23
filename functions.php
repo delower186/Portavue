@@ -1,6 +1,8 @@
 <?PHP
 require_once(get_template_directory() . "/inc/custom_post_type.php");
 require_once(get_template_directory() . "/inc/portfolio_custom_meta_box.php");
+require_once(get_template_directory() . "/inc/testimonial_custom_meta_box.php");
+require_once(get_template_directory() . "/inc/custom_functions.php");
 
 
 function portavue_theme_support(){
@@ -72,11 +74,3 @@ function portavue_register_scripts(){
 }
 
 add_action( "wp_enqueue_scripts", "portavue_register_scripts");
-
-function portavue_excerpt_limit($limit, $contents){
-    $excerpt = strip_tags($contents);
-    if (strlen($excerpt) > $limit) {
-        $excerpt = substr($excerpt, 0, $limit) . '...';
-    }
-    return $excerpt;
-}

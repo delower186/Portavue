@@ -59,3 +59,36 @@ function portavue_projects_taxonomies(){
 }
 
 add_action( 'init', 'portavue_projects_taxonomies' );
+
+
+// generate Testimonial post type
+function portavue_testimonial_post_type(){   
+        
+    $args = array(
+
+        'labels' => array(
+            'name'               => 'Testimonials',
+            'singular_name'      => 'Testimonial',
+            'menu_name'          => 'Testimonials',
+            'add_new'            => "Add New Testimonial",
+            'add_new_item'       => "Add New Testimonial",
+            'new_item'           => "New Testimonial",
+            'edit_item'          => "Edit Testimonial",
+            'view_item'          => "View Testimonial",
+            'all_items'          => "All Testimonials",
+
+        ),
+
+        'public' => true,
+        'has_archive' => true, 
+        'show_in_rest' => true,
+        'rewrite' => array('slug' => 'testimonial'),
+        // 'taxonomies' => array( 'projects'),
+        'supports' => array('title','editor','thumbnail'),
+    );
+
+    register_post_type( 'testimonial', $args );
+    
+}
+
+add_action( 'init', 'portavue_testimonial_post_type');
