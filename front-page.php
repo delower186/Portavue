@@ -107,7 +107,7 @@
             <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </div>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem</p>
+        <p><?php echo get_theme_mod( 'about_section_msg' );?></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -272,7 +272,7 @@
             <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </div>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem</p>
+        <p><?php echo get_theme_mod( 'resume_section_msg' );?></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -393,7 +393,7 @@
             <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </div>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem</p>
+        <p><?php echo get_theme_mod( 'portfolio_section_msg' );?></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -469,7 +469,7 @@
             <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </div>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem</p>
+        <p><?php echo get_theme_mod( 'testimonial_section_msg' );?></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -529,7 +529,7 @@
             <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </div>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem</p>
+        <p><?php echo get_theme_mod( 'service_section_msg' );?></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -608,7 +608,7 @@
             <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>
           </svg>
         </div>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum qui dolorem</p>
+        <p><?php echo get_theme_mod( 'faq_section_msg' );?></p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -686,23 +686,23 @@
           <div class="col-lg-6">
             <div class="content" data-aos="fade-up" data-aos-delay="200">
               <div class="section-category mb-3">Contact</div>
-              <h2 class="display-5 mb-4">Nemo enim ipsam voluptatem quia voluptas aspernatur</h2>
-              <p class="lead mb-4">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+              <h2 class="display-5 mb-4"><?php echo get_theme_mod( 'contact_title' );?></h2>
+              <p class="lead mb-4"><?php echo get_theme_mod( 'contact_section_msg' );?></p>
 
               <div class="contact-info mt-5">
                 <div class="info-item d-flex mb-3">
                   <i class="bi bi-envelope-at me-3"></i>
-                  <span>info@example.com</span>
+                  <span><?php echo get_theme_mod( 'email' );?></span>
                 </div>
 
                 <div class="info-item d-flex mb-3">
                   <i class="bi bi-telephone me-3"></i>
-                  <span>+1 5589 55488 558</span>
+                  <span><?php echo get_theme_mod( 'phone' );?></span>
                 </div>
 
                 <div class="info-item d-flex mb-4">
                   <i class="bi bi-geo-alt me-3"></i>
-                  <span>A108 Adam Street, New York, NY 535022</span>
+                  <span><?php echo get_theme_mod( 'address' );?></span>
                 </div>
 
                 <a href="#" class="map-link d-inline-flex align-items-center">
