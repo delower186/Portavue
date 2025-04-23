@@ -446,25 +446,8 @@
                       $query = new WP_Query($args);
                       
                       while ($query->have_posts()) {
-                          $query->the_post();
-                          echo '<div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-'.$term->slug.'">
-                              <div class="portfolio-card">
-                                <div class="portfolio-image">
-                                  <img src="'.get_the_post_thumbnail_url().'" class="img-fluid" alt="" loading="lazy">
-                                  <div class="portfolio-overlay">
-                                    <div class="portfolio-actions">
-                                      <a href="'.get_the_post_thumbnail_url().'" class="glightbox preview-link" data-gallery="portfolio-gallery-web"><i class="bi bi-eye"></i></a>
-                                      <a href="'.get_the_permalink().'" class="details-link"><i class="bi bi-arrow-right"></i></a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="portfolio-content">
-                                  <span class="category">'. $term->name .'</span>
-                                  <h3>"'.get_the_title().'"</h3>
-                                  <p>'.portavue_excerpt_limit(200, get_the_excerpt()).'</p>
-                                </div>
-                              </div>
-                            </div><!-- End Portfolio Item -->';
+                        $query->the_post();
+                        get_template_part( 'template-parts/content', 'portfolio', ['term' => $term]);
                       }
                       wp_reset_postdata();
                       // end loop

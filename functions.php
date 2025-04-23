@@ -1,5 +1,6 @@
 <?PHP
 require_once(get_template_directory() . "/inc/custom_post_type.php");
+require_once(get_template_directory() . "/inc/custom_meta_box.php");
 
 
 function portavue_theme_support(){

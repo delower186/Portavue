@@ -21,8 +21,9 @@ function portavue_portfolio_post_type(){
         'public' => true,
         'has_archive' => true, 
         'show_in_rest' => true,
-        'taxonomies' => array( 'projects'),
-        'supports' => array('title','editor','author','thumbnail', 'excerpt', 'custom-fields'),
+        'rewrite' => array('slug' => 'portfolio'),
+        // 'taxonomies' => array( 'projects'),
+        'supports' => array('title','editor','author','thumbnail', 'excerpt'),
     );
 
     register_post_type( 'portfolio', $args );
