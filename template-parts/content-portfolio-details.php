@@ -31,6 +31,39 @@
 
         <div class="position-sticky" style="top: 40px">
           <div class="portfolio-description">
+            <div class="testimonial-item">
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <?php 
+                    $message = get_post_meta(get_the_ID(), '_message', true);
+
+                    if($message){
+                      echo '<span>'.$message.'</span>';
+                    }
+                  ?>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <div>
+                <?php 
+                  $client_image_id = get_post_meta(get_the_ID(), '_client_image_id', true);
+                  if ($client_image_id) {
+                      echo '<img src="'.wp_get_attachment_url($client_image_id).'" class="testimonial-img" alt="client">';
+                  }
+
+                  $person_name = get_post_meta(get_the_ID(), '_person_name', true);
+
+                  if($person_name){
+                    echo '<h3>'.$person_name.'</h3>';
+                  }
+
+                  $position = get_post_meta(get_the_ID(), '_position', true);
+
+                  if($position){
+                    echo '<h4>'.$position.'</h4>';
+                  }
+                ?>
+                </div>
+              </div>
             <h2><?php echo get_the_title();?></h2>
             <?php echo the_content(); ?>
           </div>
