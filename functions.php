@@ -2,6 +2,7 @@
 require_once(get_template_directory() . "/inc/custom_post_type.php");
 require_once(get_template_directory() . "/inc/portfolio_custom_meta_box.php");
 require_once(get_template_directory() . "/inc/testimonial_custom_meta_box.php");
+require_once(get_template_directory() . "/inc/service_custom_meta_box.php");
 require_once(get_template_directory() . "/inc/custom_functions.php");
 require_once(get_template_directory() . "/inc/theme_customization.php");
 

@@ -36,7 +36,7 @@ add_action('add_meta_boxes', 'portavue_testimonial_add_meta_box');
 
 function portavue_testimonial_meta_box_callback($post) {
     // Add nonce for security
-    wp_nonce_field('portfolio_meta_box_nonce', 'portfolio_meta_box_nonce_field');
+    wp_nonce_field('testimonial_meta_box_nonce', 'testimonial_meta_box_nonce_field');
 
     // Retrieve existing value
     $testimonial_person_name = get_post_meta($post->ID, '_testimonial_person_name', true);
@@ -61,8 +61,8 @@ function portavue_testimonial_meta_box_callback($post) {
 
 function portavue_save_testimonial_meta_box($post_id) {
     // Verify nonce
-    if (!isset($_POST['portfolio_meta_box_nonce_field']) ||
-        !wp_verify_nonce($_POST['portfolio_meta_box_nonce_field'], 'portfolio_meta_box_nonce')) {
+    if (!isset($_POST['testimonial_meta_box_nonce_field']) ||
+        !wp_verify_nonce($_POST['testimonial_meta_box_nonce_field'], 'testimonial_meta_box_nonce')) {
         return;
     }
 

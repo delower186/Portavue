@@ -86,7 +86,7 @@ function portavue_create_testimonial_post_type(){
         'rewrite' => array('slug' => 'testimonial'),
         // 'taxonomies' => array( 'projects'),
         'supports' => array('title','editor','thumbnail'),
-        'menu_icon' => 'dashicons-yes-alt',
+        'menu_icon' => 'dashicons-feedback',
     );
 
     register_post_type( 'testimonial', $args );
@@ -140,3 +140,26 @@ function portavue_create_faq_post_type() {
     );
 }
 add_action('init', 'portavue_create_faq_post_type');
+
+/****
+ * Service Post Type
+ */
+function portavue_create_service_post_type() {
+    register_post_type('service',
+        array(
+            'labels' => array(
+                'name' => __('Services'),
+                'singular_name' => __('Service'),
+                'add_new' => __('Add Service'),
+                'add_new_item' =>  __('Add Service'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'rewrite' => array('slug' => 'service'),
+            'supports' => array('title','editor'), // No title or editor support
+            'menu_icon' => 'dashicons-products',
+        )
+    );
+}
+add_action('init', 'portavue_create_service_post_type');
