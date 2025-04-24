@@ -1,7 +1,7 @@
 <?php 
 
 // generate Portfolio post type
-function portavue_portfolio_post_type(){   
+function portavue_create_portfolio_post_type(){   
         
     $args = array(
 
@@ -23,17 +23,18 @@ function portavue_portfolio_post_type(){
         'show_in_rest' => true,
         'rewrite' => array('slug' => 'portfolio'),
         // 'taxonomies' => array( 'projects'),
-        'supports' => array('title','editor','author','thumbnail', 'excerpt'),
+        'supports' => array('title','editor','author','thumbnail'),
+        'menu_icon' => 'dashicons-welcome-view-site',
     );
 
     register_post_type( 'portfolio', $args );
     
 }
 
-add_action( 'init', 'portavue_portfolio_post_type');
+add_action( 'init', 'portavue_create_portfolio_post_type');
 
 // Generate custom Category (taxonomies)
-function portavue_projects_taxonomies(){
+function portavue_create_projects_taxonomies(){
     $labels = array(
         'name'              => _x( 'Projects', 'taxonomy general name' ),
         'singular_name'     => _x( 'Project', 'taxonomy singular name' ),
@@ -58,11 +59,11 @@ function portavue_projects_taxonomies(){
     register_taxonomy( 'projects', [ 'portfolio' ], $args );
 }
 
-add_action( 'init', 'portavue_projects_taxonomies' );
+add_action( 'init', 'portavue_create_projects_taxonomies' );
 
 
 // generate Testimonial post type
-function portavue_testimonial_post_type(){   
+function portavue_create_testimonial_post_type(){   
         
     $args = array(
 
@@ -85,19 +86,23 @@ function portavue_testimonial_post_type(){
         'rewrite' => array('slug' => 'testimonial'),
         // 'taxonomies' => array( 'projects'),
         'supports' => array('title','editor','thumbnail'),
+        'menu_icon' => 'dashicons-yes-alt',
     );
 
     register_post_type( 'testimonial', $args );
     
 }
 
-add_action( 'init', 'portavue_testimonial_post_type');
-
-function create_client_post_type() {
+add_action( 'init', 'portavue_create_testimonial_post_type');
+/**
+ * Client Post Type
+ * @return void
+ */
+function portavue_create_client_post_type() {
     register_post_type('client',
         array(
             'labels' => array(
-                'name' => __('Client'),
+                'name' => __('Clients'),
                 'singular_name' => __('Client'),
                 'add_new' => __('Add Client'),
                 'add_new_item' =>  __('Add Client'),
@@ -111,4 +116,27 @@ function create_client_post_type() {
         )
     );
 }
-add_action('init', 'create_client_post_type');
+add_action('init', 'portavue_create_client_post_type');
+
+/****
+ * FAQ Post Type
+ */
+function portavue_create_faq_post_type() {
+    register_post_type('faq',
+        array(
+            'labels' => array(
+                'name' => __('FAQs'),
+                'singular_name' => __('FAQ'),
+                'add_new' => __('Add FAQ'),
+                'add_new_item' =>  __('Add FAQ'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'rewrite' => array('slug' => 'faq'),
+            'supports' => array('title','editor'), // No title or editor support
+            'menu_icon' => 'dashicons-editor-help',
+        )
+    );
+}
+add_action('init', 'portavue_create_faq_post_type');
