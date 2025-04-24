@@ -2,7 +2,7 @@
 /***
  * 
 */
-function portavue_add_section_msg_customizer_field( $wp_customize ) {
+function portavue_add_customizer_field( $wp_customize ) {
     /***
      * Section msg field generator
      */
@@ -26,11 +26,11 @@ function portavue_add_section_msg_customizer_field( $wp_customize ) {
      * single field generator
      */
 
-     $fields = ['contact_title', 'email', 'phone', 'address'];
+     $fields = ['hero_name','hero_text','hero_experiences','hero_projects','hero_clients','contact_title', 'email', 'phone', 'address'];
 
      foreach($fields as $field){
         $wp_customize->add_setting( $field, array(
-            'default' => 'Default Section Msg',
+            'default' => 'Default '.$field,
             'sanitize_callback' => 'sanitize_text_field',
         ) );
         
@@ -43,4 +43,4 @@ function portavue_add_section_msg_customizer_field( $wp_customize ) {
     }
 
   }
-add_action( 'customize_register', 'portavue_add_section_msg_customizer_field' );
+add_action( 'customize_register', 'portavue_add_customizer_field' );

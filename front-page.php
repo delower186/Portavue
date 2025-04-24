@@ -8,23 +8,23 @@
 
         <div class="row align-items-center content">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3>Delower Hossain</h3>
-            <h2>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></h2>
+            <h3><?php echo get_theme_mod( 'hero_name' );?></h3>
+            <h2>I'm <span class="typed" data-typed-items="<?php echo get_theme_mod( 'hero_text' );?>"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></h2>
             <div class="cta-buttons" data-aos="fade-up" data-aos-delay="300">
               <a href="#portfolio" class="btn btn-primary">View My Work</a>
               <a href="#contact" class="btn btn-outline">Let's Connect</a>
             </div>
             <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
               <div class="stat-item">
-                <span data-purecounter-start="0" data-purecounter-end="7" data-purecounter-duration="1" class="stat-number purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="<?php echo get_theme_mod( 'hero_experiences' );?>" data-purecounter-duration="1" class="stat-number purecounter"></span>
                 <span class="stat-label">Years Experience</span>
               </div>
               <div class="stat-item">
-                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="stat-number purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="<?php echo get_theme_mod( 'hero_projects' );?>" data-purecounter-duration="1" class="stat-number purecounter"></span>
                 <span class="stat-label">Projects Completed</span>
               </div>
               <div class="stat-item">
-                <span data-purecounter-start="0" data-purecounter-end="495" data-purecounter-duration="1" class="stat-number purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="<?php echo get_theme_mod( 'hero_clients' );?>" data-purecounter-duration="1" class="stat-number purecounter"></span>
                 <span class="stat-label">Happy Clients</span>
               </div>
             </div>
@@ -81,14 +81,26 @@
             }
           </script>
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+          <?php
+            $args = ['post_type' => 'client'];
+            $client_query = new WP_Query($args);
+
+            if ($client_query->have_posts()):
+
+              while ($client_query->have_posts()): $client_query->the_post();
+                get_template_part( 'template-parts/content', 'client');
+              endwhile;
+              wp_reset_postdata();
+          endif;
+          ?>
+            <!-- <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div> -->
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -704,11 +716,6 @@
                   <i class="bi bi-geo-alt me-3"></i>
                   <span><?php echo get_theme_mod( 'address' );?></span>
                 </div>
-
-                <a href="#" class="map-link d-inline-flex align-items-center">
-                  Open Map
-                  <i class="bi bi-arrow-right ms-2"></i>
-                </a>
               </div>
             </div>
           </div>

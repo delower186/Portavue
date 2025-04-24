@@ -92,3 +92,23 @@ function portavue_testimonial_post_type(){
 }
 
 add_action( 'init', 'portavue_testimonial_post_type');
+
+function create_client_post_type() {
+    register_post_type('client',
+        array(
+            'labels' => array(
+                'name' => __('Client'),
+                'singular_name' => __('Client'),
+                'add_new' => __('Add Client'),
+                'add_new_item' =>  __('Add Client'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'rewrite' => array('slug' => 'client'),
+            'supports' => array('title','editor'), // No title or editor support
+            'menu_icon' => 'dashicons-format-gallery',
+        )
+    );
+}
+add_action('init', 'create_client_post_type');
