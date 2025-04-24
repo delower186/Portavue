@@ -163,3 +163,32 @@ function portavue_create_service_post_type() {
     );
 }
 add_action('init', 'portavue_create_service_post_type');
+
+/**
+ * Custom taxonomy Features  like tag
+ */
+
+ function portavue_create_custom_taxonomy_feature() {
+    register_taxonomy(
+        'feature', // Taxonomy slug
+        'service',  // Post type this taxonomy is assigned to
+        array(
+            'labels' => array(
+                'name'              => 'Features',
+                'singular_name'     => 'Feature',
+                'search_items'      => 'Search Features',
+                'all_items'         => 'All Features',
+                'edit_item'         => 'Edit Feature',
+                'update_item'       => 'Update Feature',
+                'add_new_item'      => 'Add New Feature',
+                'new_item_name'     => 'New Feature Name',
+                'menu_name'         => 'Features',
+            ),
+            'hierarchical' => false, // false makes it like tags; true makes it like categories
+            'show_ui'      => true,
+            'show_in_rest' => true, // For Gutenberg support
+            'rewrite'      => array('slug' => 'feature'),
+        )
+    );
+}
+add_action('init', 'portavue_create_custom_taxonomy_feature');
