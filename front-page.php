@@ -115,11 +115,11 @@
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
+          <?php $about = get_page_by_path('about'); ?>
         <div class="row align-items-center">
           <div class="col-lg-6 position-relative" data-aos="fade-right" data-aos-delay="200">
             <div class="about-image">
-              <img src="assets/img/profile/profile-square-2.webp" alt="Profile Image" class="img-fluid rounded-4">
+              <img src="<?php echo get_the_post_thumbnail_url($about->ID); ?>" alt="Profile Image" class="img-fluid rounded-4">
             </div>
           </div>
 
@@ -127,53 +127,85 @@
             <div class="about-content">
               <span class="subtitle">About Me</span>
 
-              <h2>UI/UX Designer &amp; Web Developer</h2>
-
-              <p class="lead mb-4">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-
-              <p class="mb-4">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</p>
+              <?php echo apply_filters('the_content', $about->post_content); ?>
 
               <div class="personal-info">
                 <div class="row g-4">
                   <div class="col-6">
                     <div class="info-item">
                       <span class="label">Name</span>
-                      <span class="value">Eliot Johnson</span>
+                      <?php
+                        $about_name = get_post_meta($about->ID, '_about_name', true);
+
+                        if($about_name){
+                          echo '<span class="value">'.$about_name.'</span>';
+                        }
+                      ?>
                     </div>
                   </div>
 
                   <div class="col-6">
                     <div class="info-item">
                       <span class="label">Phone</span>
-                      <span class="value">+123 456 7890</span>
+                      <?php
+                        $about_phone = get_post_meta($about->ID, '_about_phone', true);
+
+                        if($about_phone){
+                          echo '<span class="value">'.$about_phone.'</span>';
+                        }
+                      ?>
                     </div>
                   </div>
 
                   <div class="col-6">
                     <div class="info-item">
                       <span class="label">Age</span>
-                      <span class="value">26 Years</span>
+                      <?php
+                        $about_age = get_post_meta($about->ID, '_about_age', true);
+
+                        if($about_age){
+                          echo '<span class="value">'.$about_age.'</span>';
+                        }
+                      ?>
                     </div>
                   </div>
 
                   <div class="col-6">
                     <div class="info-item">
                       <span class="label">Email</span>
-                      <span class="value">email@example.com</span>
+                      <?php
+                        $about_email = get_post_meta($about->ID, '_about_email', true);
+
+                        if($about_email){
+                          echo '<span class="value">'.$about_email.'</span>';
+                        }
+                      ?>
                     </div>
                   </div>
 
                   <div class="col-6">
                     <div class="info-item">
                       <span class="label">Occupation</span>
-                      <span class="value">Lorem Engineer</span>
+                      <?php
+                        $about_occupation = get_post_meta($about->ID, '_about_occupation', true);
+
+                        if($about_occupation){
+                          echo '<span class="value">'.$about_occupation.'</span>';
+                        }
+                      ?>
                     </div>
                   </div>
 
                   <div class="col-6">
                     <div class="info-item">
                       <span class="label">Nationality</span>
-                      <span class="value">Ipsum</span>
+                      <?php
+                        $about_nationality = get_post_meta($about->ID, '_about_nationality', true);
+
+                        if($about_nationality){
+                          echo '<span class="value">'.$about_nationality.'</span>';
+                        }
+                      ?>
                     </div>
                   </div>
                 </div>
@@ -181,11 +213,23 @@
 
               <div class="signature mt-4">
                 <div class="signature-image">
-                  <img src="assets/img/misc/signature-1.webp" alt="" class="img-fluid">
+                <?php
+                    if($about_name){
+                      $signature_url = portavue_generate_signature_image($about_name);
+                      echo '<img src="'.$signature_url.'" alt="" class="img-fluid">';
+                    }
+                ?>
                 </div>
                 <div class="signature-info">
-                  <h4>Eliot Johnson</h4>
-                  <p>Adipiscing Elit, Lorem Ipsum</p>
+                <?php
+                    if($about_name){
+                      echo '<h4>'.$about_name.'</4>';
+                    }
+
+                    if($about_occupation){
+                      echo '<p>'.$about_occupation.'</p>';
+                    }
+                ?>
                 </div>
               </div>
             </div>
