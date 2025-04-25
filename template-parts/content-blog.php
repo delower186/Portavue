@@ -1,0 +1,502 @@
+    <!-- Page Title -->
+    <div class="page-title">
+      <div class="title-wrapper">
+        <h1><?php echo the_title(); ?></h1>
+        <p><?php echo portavue_excerpt_limit(200, get_the_excerpt());?></p>
+      </div>
+    </div><!-- End Page Title -->
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-8">
+
+          <!-- Blog Details Section -->
+          <section id="blog-details" class="blog-details section">
+            <div class="container" data-aos="fade-up">
+
+              <article class="article">
+
+                <div class="hero-img" data-aos="zoom-in">
+                  <img src="<?php echo get_the_post_thumbnail_url();?>" alt="Featured blog image" class="img-fluid" loading="lazy">
+                  <div class="meta-overlay">
+                    <div class="meta-categories">
+                        <?php 
+                            $categories = get_the_category();
+
+                            if ( ! empty( $categories ) ) {
+                                foreach ( $categories as $cat ) {
+                                    echo '<a href="' . esc_url( get_category_link( $cat->term_id ) ) . '" class="category">'
+                                        . esc_html( $cat->name ) .
+                                        '</a> ';
+                                }
+                            }
+                            $content = get_post_field('post_content', get_the_ID());
+                            $word_count = str_word_count(strip_tags($content));
+                            $reading_time = ceil($word_count / 200); // 200 words per minute
+                        ?>
+                      <span class="divider">•</span>
+                      <span class="reading-time"><i class="bi bi-clock"></i> <?php echo $reading_time; ?> min read</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="article-content" data-aos="fade-up" data-aos-delay="100">
+                  <div class="content-header">
+                    <h1 class="title"><?php echo the_title(); ?></h1>
+
+                    <div class="author-info">
+                      <div class="author-details">
+                        <?php 
+                            $avatar_url = get_avatar_url( get_the_author_meta('ID'), ['size' => 96] );
+                            echo '<img src="' . esc_url($avatar_url) . '" alt="' . esc_attr(get_the_author()) . '" class="author-img">';
+                        ?>
+                        <div class="info">
+                          <h4><a target="_blank" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta('ID') ) ); ?>"><?php echo esc_html( get_the_author() ); ?></a></h4>
+                          <span class="role"><?php echo get_the_author_meta('job_title', get_current_user_id()); ?></span>
+                        </div>
+                      </div>
+                      <div class="post-meta">
+                        <span class="date"><i class="bi bi-calendar3"></i> <?php echo get_the_date('M j, Y'); ?></span>
+                        <span class="divider">•</span>
+                        <span class="comments"><i class="bi bi-chat-text"></i> <?php echo get_comments_number(); ?> Comments</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="content">
+                    <?php 
+                        // Remove first <img> from content
+                        $clean_content = preg_replace('/<img.+?src=["\']([^"\']+)["\'].*?>/', '', $content, 1);
+
+                        // Then display
+                        echo apply_filters('the_content', $clean_content);
+                    ?>
+
+                    <div class="content-image">
+                        <?php 
+                            $content = get_the_content();
+                            $first_img_url = '';
+
+                            if (preg_match('/<img.+src=["\']([^"\']+)["\']/', $content, $matches)) {
+                                $first_img_url = $matches[1]; // this is the first image's src
+                            }
+
+                            if ($first_img_url) {
+                                echo '<img src="' . esc_url($first_img_url) . '" alt="'.get_the_title().'" class="img-fluid" loading="lazy">';
+                            }
+                        ?>
+                    </div>
+
+                  </div>
+
+                  <div class="meta-bottom">
+                    <div class="tags-section">
+                      <h4>Related Topics</h4>
+                      <div class="tags">
+                        <?php 
+                            $tags = get_the_tags();
+
+                            if ( $tags ) {
+                                foreach ( $tags as $tag ) {
+                                    echo '<a href="' . esc_url( get_tag_link( $tag->term_id ) ) . '" class="tag">' .
+                                        esc_html( $tag->name ) . '</a> ';
+                                }
+                            }
+                        ?>
+                      </div>
+                    </div>
+
+                    <div class="share-section">
+                      <h4>Share Article</h4>
+                      <div class="social-links">
+                        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="copy-link" title="Copy Link"><i class="bi bi-link-45deg"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </article>
+
+            </div>
+          </section><!-- /Blog Details Section -->
+
+          <!-- Blog Author Section -->
+          <section id="blog-author" class="blog-author section">
+
+            <div class="container" data-aos="fade-up">
+              <div class="author-box">
+                <div class="row align-items-center">
+                  <div class="col-lg-3 col-md-4 text-center">
+                  <?php 
+                    $avatar_url = get_avatar_url( get_the_author_meta('ID'), ['size' => 96] );
+                    echo '<img src="' . esc_url($avatar_url) . '" alt="' . esc_attr(get_the_author()) . '" class="author-img rounded-circle" loading="lazy">';
+                  ?>
+                    <div class="author-social-links mt-3">
+                      <a href="https://twitter.com/#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                      <a href="https://linkedin.com/#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                      <a href="https://github.com/#" class="github"><i class="bi bi-github"></i></a>
+                      <a href="https://facebook.com/#" class="facebook"><i class="bi bi-facebook"></i></a>
+                      <a href="https://instagram.com/#" class="instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-9 col-md-8">
+                    <div class="author-content">
+                      <h3 class="author-name"><?php echo esc_html( get_the_author() ); ?></h3>
+                      <?php 
+                        if(get_the_author_meta('job_title', get_current_user_id())){
+                            echo '<span class="author-title">'.get_the_author_meta('job_title', get_current_user_id()).'</span>';
+                        }else{
+                            echo '<span class="author-title">Job Title Not Provided</span>';
+                        }
+
+                        if(get_the_author_meta('description')){
+                            echo '<div class="author-bio mt-3">'.get_the_author_meta('description').'</div>';
+                        }else{
+                            echo '<div class="author-bio mt-3">Bio Is not Provided</div>';
+                        }
+                      ?>
+                      <div class="author-website mt-3">
+                        <?php 
+                            if(get_the_author_meta('user_url')){
+                                echo '<a href="'.get_the_author_meta('user_url').'" class="website-link">
+                                    <i class="bi bi-globe"></i>
+                                    <span>'.preg_replace('#^https?://#', '', get_the_author_meta('user_url')).'</span>
+                                    </a>';
+                            }else{
+                                echo '<a href="#" class="website-link">
+                                        <i class="bi bi-globe"></i>
+                                        <span>example.com</span>
+                                    </a>';
+                            }
+                        ?>
+                        <a target="_blank" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta('ID') ) ); ?>" class="more-posts">
+                          Read More from <?php echo esc_html( get_the_author() ); ?> <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section><!-- /Blog Author Section -->
+
+          <!-- Blog Comments Section -->
+          <section id="blog-comments" class="blog-comments section">
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+              <div class="blog-comments-3">
+                <div class="section-header">
+                  <h3>Discussion <span class="comment-count">(8)</span></h3>
+                </div>
+
+                <div class="comments-wrapper">
+                  <!-- Comment 1 -->
+                  <article class="comment-card">
+                    <div class="comment-header">
+                      <div class="user-info">
+                        <img src="assets/img/person/person-f-9.webp" alt="User avatar" loading="lazy">
+                        <div class="meta">
+                          <h4 class="name">Sarah Williams</h4>
+                          <span class="date"><i class="bi bi-calendar3"></i> February 13, 2025</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-content">
+                      <p>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</p>
+                    </div>
+                    <div class="comment-actions">
+                      <button class="action-btn like-btn">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <span>12</span>
+                      </button>
+                      <button class="action-btn reply-btn">
+                        <i class="bi bi-reply"></i>
+                        <span>Reply</span>
+                      </button>
+                    </div>
+                  </article>
+
+                  <!-- Comment 2 with replies -->
+                  <article class="comment-card">
+                    <div class="comment-header">
+                      <div class="user-info">
+                        <img src="assets/img/person/person-m-9.webp" alt="User avatar" loading="lazy">
+                        <div class="meta">
+                          <h4 class="name">James Cooper</h4>
+                          <span class="date"><i class="bi bi-calendar3"></i> February 13, 2025</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-content">
+                      <p>Quisque ut nisi. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Suspendisse non nisl sit amet velit hendrerit rutrum. Ut leo. Ut a nisl id ante tempus hendrerit.</p>
+                    </div>
+                    <div class="comment-actions">
+                      <button class="action-btn like-btn">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <span>8</span>
+                      </button>
+                      <button class="action-btn reply-btn">
+                        <i class="bi bi-reply"></i>
+                        <span>Reply</span>
+                      </button>
+                    </div>
+
+                    <!-- Reply Thread -->
+                    <div class="reply-thread">
+                      <!-- Reply 1 -->
+                      <article class="comment-card reply">
+                        <div class="comment-header">
+                          <div class="user-info">
+                            <img src="assets/img/person/person-f-9.webp" alt="User avatar" loading="lazy">
+                            <div class="meta">
+                              <h4 class="name">Emily Parker</h4>
+                              <span class="date"><i class="bi bi-calendar3"></i> February 13, 2025</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="comment-content">
+                          <p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+                        </div>
+                        <div class="comment-actions">
+                          <button class="action-btn like-btn">
+                            <i class="bi bi-hand-thumbs-up"></i>
+                            <span>5</span>
+                          </button>
+                          <button class="action-btn reply-btn">
+                            <i class="bi bi-reply"></i>
+                            <span>Reply</span>
+                          </button>
+                        </div>
+                      </article>
+
+                      <!-- Reply 2 -->
+                      <article class="comment-card reply">
+                        <div class="comment-header">
+                          <div class="user-info">
+                            <img src="assets/img/person/person-f-7.webp" alt="User avatar" loading="lazy">
+                            <div class="meta">
+                              <h4 class="name">Daniel Brown</h4>
+                              <span class="date"><i class="bi bi-calendar3"></i> February 13, 2025</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="comment-content">
+                          <p>Nam commodo suscipit quam. Vestibulum ullamcorper mauris at ligula. Fusce fermentum odio nec arcu.</p>
+                        </div>
+                        <div class="comment-actions">
+                          <button class="action-btn like-btn">
+                            <i class="bi bi-hand-thumbs-up"></i>
+                            <span>3</span>
+                          </button>
+                          <button class="action-btn reply-btn">
+                            <i class="bi bi-reply"></i>
+                            <span>Reply</span>
+                          </button>
+                        </div>
+                      </article>
+                    </div>
+                  </article>
+
+                  <!-- Comment 3 -->
+                  <article class="comment-card">
+                    <div class="comment-header">
+                      <div class="user-info">
+                        <img src="assets/img/person/person-m-6.webp" alt="User avatar" loading="lazy">
+                        <div class="meta">
+                          <h4 class="name">Rachel Adams</h4>
+                          <span class="date"><i class="bi bi-calendar3"></i> February 13, 2025</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-content">
+                      <p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                    </div>
+                    <div class="comment-actions">
+                      <button class="action-btn like-btn">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <span>6</span>
+                      </button>
+                      <button class="action-btn reply-btn">
+                        <i class="bi bi-reply"></i>
+                        <span>Reply</span>
+                      </button>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+            </div>
+
+          </section><!-- /Blog Comments Section -->
+
+          <!-- Blog Comment Form Section -->
+          <section id="blog-comment-form" class="blog-comment-form section">
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+              <form method="post" role="form">
+
+                <div class="section-header">
+                  <h3>Share Your Thoughts</h3>
+                  <p>Your email address will not be published. Required fields are marked *</p>
+                </div>
+
+                <div class="row gy-3">
+                  <div class="col-md-6 form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your full name" required="">
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email address" required="">
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <label for="website">Website</label>
+                    <input type="url" name="website" class="form-control" id="website" placeholder="Your website (optional)">
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <label for="comment">Your Comment *</label>
+                    <textarea class="form-control" name="comment" id="comment" rows="5" placeholder="Write your thoughts here..." required=""></textarea>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <button type="submit" class="btn-submit">Post Comment</button>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+
+          </section><!-- /Blog Comment Form Section -->
+
+        </div>
+
+        <div class="col-lg-4 sidebar">
+
+          <div class="widgets-container" data-aos="fade-up" data-aos-delay="200">
+
+            <!-- Search Widget -->
+            <div class="search-widget widget-item">
+
+              <h3 class="widget-title">Search</h3>
+              <form action="">
+                <input type="text">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+              </form>
+
+            </div><!--/Search Widget -->
+
+            <!-- Categories Widget -->
+            <div class="categories-widget widget-item">
+
+              <h3 class="widget-title">Categories</h3>
+              <ul class="mt-3">
+                <li><a href="#">General <span>(25)</span></a></li>
+                <li><a href="#">Lifestyle <span>(12)</span></a></li>
+                <li><a href="#">Travel <span>(5)</span></a></li>
+                <li><a href="#">Design <span>(22)</span></a></li>
+                <li><a href="#">Creative <span>(8)</span></a></li>
+                <li><a href="#">Educaion <span>(14)</span></a></li>
+              </ul>
+
+            </div><!--/Categories Widget -->
+
+            <!-- Categories Widget -->
+            <div class="categories-widget widget-item">
+
+              <h3 class="widget-title">Categories</h3>
+              <ul class="mt-3">
+                <li><a href="#">General <span>(25)</span></a></li>
+                <li><a href="#">Lifestyle <span>(12)</span></a></li>
+                <li><a href="#">Travel <span>(5)</span></a></li>
+                <li><a href="#">Design <span>(22)</span></a></li>
+                <li><a href="#">Creative <span>(8)</span></a></li>
+                <li><a href="#">Educaion <span>(14)</span></a></li>
+              </ul>
+
+            </div><!--/Categories Widget -->
+
+            <!-- Recent Posts Widget -->
+            <div class="recent-posts-widget widget-item">
+
+              <h3 class="widget-title">Recent Posts</h3>
+
+              <div class="post-item">
+                <img src="assets/img/blog/blog-post-square-1.webp" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+
+              <div class="post-item">
+                <img src="assets/img/blog/blog-post-square-2.webp" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-details.html">Quidem autem et impedit</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+
+              <div class="post-item">
+                <img src="assets/img/blog/blog-post-square-3.webp" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-details.html">Id quia et et ut maxime similique occaecati ut</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+
+              <div class="post-item">
+                <img src="assets/img/blog/blog-post-square-4.webp" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-details.html">Laborum corporis quo dara net para</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+
+              <div class="post-item">
+                <img src="assets/img/blog/blog-post-square-5.webp" alt="" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+              </div><!-- End recent post item-->
+
+            </div><!--/Recent Posts Widget -->
+
+            <!-- Tags Widget -->
+            <div class="tags-widget widget-item">
+
+              <h3 class="widget-title">Tags</h3>
+              <ul>
+                <li><a href="#">App</a></li>
+                <li><a href="#">IT</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Office</a></li>
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Studio</a></li>
+                <li><a href="#">Smart</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Marketing</a></li>
+              </ul>
+
+            </div><!--/Tags Widget -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
