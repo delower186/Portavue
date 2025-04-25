@@ -252,57 +252,27 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row skills-content skills-animation">
+            <?php
+              $args = ['post_type' => 'skill'];
+              $client_query = new WP_Query($args);
 
-          <div class="col-lg-6">
+              $post_count = $client_query->found_posts; // Get total count
 
-            <div class="progress">
-              <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-          </div>
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill"><span>PHP</span> <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>WordPress/CMS</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>Photoshop</span> <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-          </div>
-
+              if ($client_query->have_posts() ):
+                  while ($client_query->have_posts()): $client_query->the_post();
+                    if($client_query->found_posts <= 3){
+                      echo '<div class="col-lg-12">';
+                        get_template_part( 'template-parts/content', 'skill');
+                      echo '</div>';
+                    }else{
+                      echo '<div class="col-lg-6">';
+                        get_template_part( 'template-parts/content', 'skill');
+                      echo '</div>';
+                    }
+                  endwhile;
+                  wp_reset_postdata();
+              endif;
+            ?>
         </div>
 
       </div>

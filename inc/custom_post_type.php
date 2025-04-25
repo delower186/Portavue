@@ -134,7 +134,7 @@ function portavue_create_faq_post_type() {
             'has_archive' => true,
             'show_in_rest' => true,
             'rewrite' => array('slug' => 'faq'),
-            'supports' => array('title','editor'), // No title or editor support
+            'supports' => array('title','editor'), // No title, editor support
             'menu_icon' => 'dashicons-editor-help',
         )
     );
@@ -157,7 +157,7 @@ function portavue_create_service_post_type() {
             'has_archive' => true,
             'show_in_rest' => true,
             'rewrite' => array('slug' => 'service'),
-            'supports' => array('title','editor'), // No title or editor support
+            'supports' => array('title','editor'), // title, editor support
             'menu_icon' => 'dashicons-products',
         )
     );
@@ -192,3 +192,26 @@ add_action('init', 'portavue_create_service_post_type');
     );
 }
 add_action('init', 'portavue_create_custom_taxonomy_feature');
+
+/****
+ * FAQ Post Type
+ */
+function portavue_create_skill_post_type() {
+    register_post_type('skill',
+        array(
+            'labels' => array(
+                'name' => __('Skills'),
+                'singular_name' => __('Skill'),
+                'add_new' => __('Add Skill'),
+                'add_new_item' =>  __('Add Skill'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'rewrite' => array('slug' => 'skill'),
+            'supports' => array('title','editor'), // No title, editor support
+            'menu_icon' => 'dashicons-awards',
+        )
+    );
+}
+add_action('init', 'portavue_create_skill_post_type');
