@@ -6,6 +6,7 @@ require_once(get_template_directory() . "/inc/service_custom_meta_box.php");
 require_once(get_template_directory() . "/inc/custom_functions.php");
 require_once(get_template_directory() . "/inc/theme_customization.php");
 require_once(get_template_directory() . "/inc/tgm-plugin-activation.php");
+require_once(get_template_directory() . "/inc/contact-form.php");
 
 
 function portavue_theme_support(){

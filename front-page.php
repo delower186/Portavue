@@ -639,7 +639,7 @@
           <div class="col-lg-6">
             <div class="contact-form card" data-aos="fade-up" data-aos-delay="300">
               <div class="card-body p-4 p-lg-5">
-                  <?php echo do_shortcode('[contact-form-7 id="9f423a0" title="Portavue_Contact_Form"]'); ?>
+                  <?php echo do_shortcode('[contact-form-7 title="Portavue_Contact_Form"]'); ?>
               </div>
             </div>
           </div>
