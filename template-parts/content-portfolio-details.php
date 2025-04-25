@@ -65,7 +65,14 @@
                 </div>
               </div>
             <h2><?php echo get_the_title();?></h2>
-            <?php echo the_content(); ?>
+            <?php 
+                // Get raw post content
+                $content = get_the_content();
+                // Remove Gutenberg gallery blocks
+                $content_without_gallery = preg_replace('/<!-- wp:gallery .*?-->(.*?)<!-- \/wp:gallery -->/is', '', $content);
+                // Apply the_content filters for formatting
+                echo apply_filters('the_content', $content_without_gallery);
+              ?>
           </div>
 
           <div class="portfolio-info mt-5">

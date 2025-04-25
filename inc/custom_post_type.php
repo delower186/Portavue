@@ -194,7 +194,7 @@ add_action('init', 'portavue_create_service_post_type');
 add_action('init', 'portavue_create_custom_taxonomy_feature');
 
 /****
- * FAQ Post Type
+ * Skill Post Type
  */
 function portavue_create_skill_post_type() {
     register_post_type('skill',
@@ -215,3 +215,49 @@ function portavue_create_skill_post_type() {
     );
 }
 add_action('init', 'portavue_create_skill_post_type');
+
+/****
+ * Experience Post Type
+ */
+function portavue_create_experience_post_type() {
+    register_post_type('experience',
+        array(
+            'labels' => array(
+                'name' => __('Experiences'),
+                'singular_name' => __('Experience'),
+                'add_new' => __('Add Experience'),
+                'add_new_item' =>  __('Add Experience'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'rewrite' => array('slug' => 'experience'),
+            'supports' => array('title','editor'), // No title, editor support
+            'menu_icon' => 'dashicons-flag',
+        )
+    );
+}
+add_action('init', 'portavue_create_experience_post_type');
+
+/****
+ * Education Post Type
+ */
+function portavue_create_education_post_type() {
+    register_post_type('education',
+        array(
+            'labels' => array(
+                'name' => __('Educations'),
+                'singular_name' => __('Education'),
+                'add_new' => __('Add Education'),
+                'add_new_item' =>  __('Add Education'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'rewrite' => array('slug' => 'education'),
+            'supports' => array('title','editor'), // No title, editor support
+            'menu_icon' => 'dashicons-welcome-learn-more',
+        )
+    );
+}
+add_action('init', 'portavue_create_education_post_type');

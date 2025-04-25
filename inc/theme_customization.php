@@ -6,7 +6,7 @@ function portavue_add_customizer_field( $wp_customize ) {
     /***
      * Section msg field generator
      */
-    $sections = ['about','resume', 'portfolio', 'testimonial', 'service', 'faq', 'contact'];
+    $sections = ['about','resume','experience','education', 'portfolio', 'testimonial', 'service', 'faq', 'contact'];
 
     foreach($sections as $section){
         $wp_customize->add_setting( $section.'_section_msg', array(
