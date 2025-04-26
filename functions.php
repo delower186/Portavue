@@ -11,6 +11,7 @@ require_once(get_template_directory() . "/inc/about_custom_meta_box.php");
 require_once(get_template_directory() . "/inc/convert_name_to_signature_img.php");
 require_once(get_template_directory() . "/inc/experience_custom_meta_box.php");
 require_once(get_template_directory() . "/inc/education_custom_meta_box.php");
+require_once(get_template_directory() . "/inc/add_custom_field_for_user_profile.php");
 
 
 function portavue_theme_support(){
@@ -92,52 +93,3 @@ function portavue_register_blog_stylesheet() {
     }
 }
 add_action('wp_enqueue_scripts', 'portavue_register_blog_stylesheet');
-
-
-/***
- * Add custom field to user profile page
- */
-
-function portavue_add_custom_user_field($user) {
-    ?>
-    <h3>Extra Info</h3>
-    <table class="form-table">
-        <tr>
-            <th><label for="job_title">Job Title</label></th>
-            <td>
-                <input type="text" name="job_title" id="job_title"
-                       value="<?php echo esc_attr(get_the_author_meta('job_title', $user->ID)); ?>"
-                       class="regular-text" />
-                <p class="description">Enter the user's job title.</p>
-            </td>
-        </tr>
-    </table>
-    <table class="form-table">
-        <tr>
-            <th><label for="facebook_profile_url">Facebook Profile URL</label></th>
-            <td>
-                <input type="text" name="facebook_profile_url" id="facebook_profile_url"
-                       value="<?php echo esc_attr(get_the_author_meta('facebook_profile_url', $user->ID)); ?>"
-                       class="regular-text" />
-                <p class="description">Enter the user's Facebook Profile URL.</p>
-            </td>
-        </tr>
-    </table>
-    <?php
-}
-
-add_action('show_user_profile', 'portavue_add_custom_user_field');
-add_action('edit_user_profile', 'portavue_add_custom_user_field');
-
-/***
- * Save custom field when profile is updated
- */
-add_action('personal_options_update', 'portavue_save_custom_user_field');
-add_action('edit_user_profile_update', 'portavue_save_custom_user_field');
-
-function portavue_save_custom_user_field($user_id) {
-    if (!current_user_can('edit_user', $user_id)) return false;
-
-    update_user_meta($user_id, 'job_title', sanitize_text_field($_POST['job_title']));
-    update_user_meta($user_id, 'facebook_profile_url', sanitize_text_field($_POST['facebook_profile_url']));
-}

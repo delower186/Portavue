@@ -136,11 +136,11 @@
                     echo '<img src="' . esc_url($avatar_url) . '" alt="' . esc_attr(get_the_author()) . '" class="author-img rounded-circle" loading="lazy">';
                   ?>
                     <div class="author-social-links mt-3">
-                      <a href="https://twitter.com/#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                      <a href="https://linkedin.com/#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                      <a href="https://github.com/#" class="github"><i class="bi bi-github"></i></a>
-                      <a href="https://facebook.com/#" class="facebook"><i class="bi bi-facebook"></i></a>
-                      <a href="https://instagram.com/#" class="instagram"><i class="bi bi-instagram"></i></a>
+                      <a target="_blank" href="<?php echo get_the_author_meta('x_profile_url', get_current_user_id()) ? get_the_author_meta('x_profile_url', get_current_user_id()): '#'; ?>" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                      <a target="_blank" href="<?php echo get_the_author_meta('linkedin_profile_url', get_current_user_id()) ? get_the_author_meta('linkedin_profile_url', get_current_user_id()): '#'; ?>" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                      <a target="_blank" href="<?php echo get_the_author_meta('github_profile_url', get_current_user_id()) ? get_the_author_meta('github_profile_url', get_current_user_id()): '#'; ?>" class="github"><i class="bi bi-github"></i></a>
+                      <a target="_blank" href="<?php echo get_the_author_meta('facebook_profile_url', get_current_user_id()) ? get_the_author_meta('facebook_profile_url', get_current_user_id()): '#'; ?>" class="facebook"><i class="bi bi-facebook"></i></a>
+                      <a target="_blank" href="<?php echo get_the_author_meta('instagram_profile_url', get_current_user_id()) ? get_the_author_meta('instagram_profile_url', get_current_user_id()): '#'; ?>" class="instagram"><i class="bi bi-instagram"></i></a>
                     </div>
                   </div>
 
