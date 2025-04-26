@@ -10,6 +10,11 @@ function portavue_register_required_plugins() {
             'slug'     => 'contact-form-7',
             'required' => true,
         ),
+        array(
+            'name'     => 'Social Media Share Buttons & Social Sharing Icons',
+            'slug'     => 'ultimate-social-media-icons',
+            'required' => true,
+        ),
     );
 
     $config = array(

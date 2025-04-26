@@ -93,3 +93,26 @@ function portavue_register_blog_stylesheet() {
     }
 }
 add_action('wp_enqueue_scripts', 'portavue_register_blog_stylesheet');
+
+/***
+ * Register widget area
+ */
+function portavue_widgets_init() {
+	
+    $widgets = ['blog-sidebar'];
+
+    foreach($widgets as $widget){
+        register_sidebar(
+            array(
+                'name'          => esc_html__( strtoupper($widget), 'portavue' ),
+                'id'            => $widget,
+                'description'   => esc_html__( 'Add Widgets here.', 'portavue' ),
+                'before_widget' => '<div id="%1$s" class="widget-item">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h2 class="widget-title">',
+                'after_title'   => '</h2>',
+            )
+        );
+    }
+}
+add_action( 'widgets_init', 'portavue_widgets_init' );
