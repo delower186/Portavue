@@ -116,3 +116,56 @@ function portavue_widgets_init() {
     }
 }
 add_action( 'widgets_init', 'portavue_widgets_init' );
+
+/***
+ * Custom comment callback
+ */
+// Enable threaded comments
+function enable_threaded_comments() {
+    if (!is_admin()) {
+        if (is_singular() && comments_open() && get_option('thread_comments')) {
+            wp_enqueue_script('comment-reply');
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'enable_threaded_comments');
+
+// Custom comment callback function
+function portavue_custom_comments_callback($comment, $args, $depth) {
+    $tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
+    ?>
+    <<?php echo $tag; ?> <?php comment_class('comment-card' . ( $depth > 1 ? ' reply' : '' )); ?> id="comment-<?php comment_ID(); ?>">
+
+      <div class="comment-header">
+        <div class="user-info">
+          <?php echo get_avatar($comment, $args['avatar_size'], '', '', ['class' => 'author-img rounded-circle', 'loading' => 'lazy']); ?>
+          <div class="meta">
+            <h4 class="name"><?php echo get_comment_author(); ?></h4>
+            <span class="date"><i class="bi bi-calendar3"></i> <?php echo get_comment_date(); ?></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comment-content">
+        <?php if ( '0' == $comment->comment_approved ) : ?>
+          <p><em>Your comment is awaiting moderation.</em></p>
+        <?php endif; ?>
+        <?php comment_text(); ?>
+      </div>
+
+      <div class="comment-actions">
+        <button class="action-btn like-btn">
+          <i class="bi bi-hand-thumbs-up"></i>
+          <span>0</span> <!-- You can replace "0" with dynamic likes if you implement it later -->
+        </button>
+        <?php
+          comment_reply_link(array_merge($args, [
+            'reply_text' => '<i class="bi bi-reply"></i> Reply',
+            'depth' => $depth,
+            'max_depth' => $args['max_depth']
+          ]));
+        ?>
+      </div>
+
+      <?php
+}
