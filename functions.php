@@ -88,7 +88,7 @@ add_action( "wp_enqueue_scripts", "portavue_register_scripts");
  * enqueue blog css
  */
 function portavue_register_blog_stylesheet() {
-    if (is_home() || is_single() || is_archive()) {
+    if (is_home() || is_single() || is_archive() || is_search()) {
         wp_enqueue_style('blog-style', get_template_directory_uri() . '/assets/css/blog.css', [], '1.0');
     }
 }
