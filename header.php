@@ -26,7 +26,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="<?php echo get_bloginfo('home'); ?>" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="<?php echo get_home_url(); ?>" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
          <?php 
             if(function_exists('the_custom_logo')){
@@ -44,15 +44,11 @@
 
       <nav id="navmenu" class="navmenu">
         <?php 
-            wp_nav_menu( 
-
-                [
-                    'menu' => 'primary',
-                    'container' => '',
-                    'theme_location' => 'primary'
-                ]
-
-            )
+          if ( is_front_page() ) {
+            wp_nav_menu( array( 'theme_location' => 'front-page-menu' ) );
+          } else {
+            wp_nav_menu( array( 'theme_location' => 'other-page-menu' ) );
+          }
         ?>
 
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

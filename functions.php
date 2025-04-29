@@ -1,4 +1,15 @@
 <?PHP
+/**
+ * Portavue functions and definitions
+ *
+ * @package Portavue
+ */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+  exit;
+}
+
 require_once(get_template_directory() . "/inc/custom_post_type.php");
 require_once(get_template_directory() . "/inc/portfolio_custom_meta_box.php");
 require_once(get_template_directory() . "/inc/testimonial_custom_meta_box.php");
@@ -27,17 +38,13 @@ function portavue_theme_support(){
 
 add_action( "after_setup_theme", "portavue_theme_support");
 
-function portavue_menus(){
-
-    $locations = [
-        'primary'       => "Header Menu",
-    ];
-
-    register_nav_menus($locations);
-
+function portavue_register_menus() {
+  register_nav_menus([
+    'front-page-menu' => __("Front Page Menu","portavue"),
+    'other-page-menu' => __( 'Other Page Menu', 'portavue' ),
+  ]);
 }
-
-add_action( "init", "portavue_menus");
+add_action( 'after_setup_theme', 'portavue_register_menus' );
 
 function portavue_register_styles(){
 
