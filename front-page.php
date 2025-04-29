@@ -1,4 +1,17 @@
-  <?php get_header(); ?>
+<?php
+/**
+ * The template for displaying Home Portfolio
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ *
+ * @package Portavue
+ */
+/**
+ * Template Name: Portavue_HomePage_template
+ */
+
+get_header();
+?>
   <main class="main">
 
     <!-- Hero Section -->
