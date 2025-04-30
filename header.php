@@ -67,10 +67,37 @@
       </nav>
 
       <div class="header-social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <?php 
+          $linkedin = get_theme_mod( 'linkedin' );
+          $whatsapp = get_theme_mod( 'whatsapp' );
+          $msteams = get_theme_mod( 'msteams' );
+          $upwork = get_theme_mod( 'upwork' );
+          $facebook = get_theme_mod( 'facebook' );
+          $twitter = get_theme_mod( 'twitter' );
+          $instagram = get_theme_mod( 'instagram' );
+
+          if ( $linkedin ) {
+            echo '<a href="'.$linkedin.'" class="twitter"><i class="bi bi-linkedin"></i></a>';
+          }
+          if ( $whatsapp ) {
+            echo '<a href="'.$whatsapp.'" class="facebook"><i class="bi bi-whatsapp fs-5"></i></a>';
+          }
+          if ( $msteams ) {
+            echo '<a href="'.$msteams.'" class="instagram"><i class="bi bi-microsoft-teams fs-5"></i></a>';
+          }
+          if ( $upwork ) {
+            echo '<a href="'.$upwork.'" class="linkedin"><i class="fa-brands fa-square-upwork fa-lg"></i></a>';
+          }
+          if ( $facebook ) {
+            echo '<a href="'.$facebook.'" class="facebook"><i class="bi bi-facebook"></i></a>';
+          }
+          if ( $twitter ) {
+            echo '<a href="'.$twitter.'" class="twitter"><i class="bi bi-twitter-x"></i></a>';
+          }
+          if ( $instagram ) {
+            echo '<a href="'.$instagram.'" class="instagram"><i class="bi bi-instagram"></i></a>';
+          }
+        ?>
       </div>
 
     </div>

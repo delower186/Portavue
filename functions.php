@@ -58,6 +58,7 @@ function portavue_register_styles(){
     // Vendor CSS Files 
     wp_enqueue_style( "portavue-bootstrap", get_template_directory_uri()."/assets/vendor/bootstrap/css/bootstrap.min.css", array(), "5.3.3", "all" );
     wp_enqueue_style( "portavue-bootstrap-icons", get_template_directory_uri()."/assets/vendor/bootstrap-icons/bootstrap-icons.css", array(), "1.11.3", "all" );
+    wp_enqueue_style( "portavue-fontawesome-icons", get_template_directory_uri()."/assets/vendor/fontawesome-6.7.2/css/all.min.css", array(), "6.7.2", "all" );
     wp_enqueue_style( "portavue-aos", get_template_directory_uri()."/assets/vendor/aos/aos.css", array(), "1.0", "all" );
     wp_enqueue_style( "portavue-glightbox", get_template_directory_uri()."/assets/vendor/glightbox/css/glightbox.min.css", array(), "1.0", "all" );
     wp_enqueue_style( "portavue-swiper", get_template_directory_uri()."/assets/vendor/swiper/swiper-bundle.min.css", array(), "11.2.6", "all" );

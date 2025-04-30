@@ -7,7 +7,7 @@ function portavue_homepage_customizer_register( $wp_customize ) {
 
     // Add a section
     $wp_customize->add_section( 'portavue_homepage_customization_section', array(
-        'title'    => __( 'HomePage', 'portavue' ),
+        'title'    => __( 'Section Message', 'portavue' ),
         'priority' => 30,
     ) );
 
@@ -29,45 +29,7 @@ function portavue_homepage_customizer_register( $wp_customize ) {
         'type' => 'text',
         ) );
     }
-
-    /**
-     * single field generator
-     */
-
-     $fields = ['hero_name','hero_text','hero_experiences','hero_projects','hero_clients','contact_title', 'email', 'phone', 'address'];
-
-     foreach($fields as $field){
-        $wp_customize->add_setting( $field, array(
-            'default' => 'Default '.$field,
-            'sanitize_callback' => 'sanitize_text_field',
-        ) );
-        
-        $wp_customize->add_control( $field.'_control', array(
-        'label' => $field,
-        'section' => 'portavue_homepage_customization_section', // Or create a new section
-        'settings' => $field,
-        'type' => 'text',
-        ) );
-    }
-
-    /**
-     * Upload Hero Image
-     */
-
-    // Add setting
-    $wp_customize->add_setting( 'portavue_hero_image', array(
-        'default'           => '',
-        'sanitize_callback' => 'esc_url_raw',
-    ) );
-
-    // Add control
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'portavue_image_control', array(
-        'label'    => __( 'Upload Hero Image', 'portavue' ),
-        'section'  => 'portavue_homepage_customization_section',
-        'settings' => 'portavue_hero_image',
-    ) ) );
-
-  }
+}
 add_action( 'customize_register', 'portavue_homepage_customizer_register' );
 
 /**
@@ -87,7 +49,7 @@ function portavue_social_media_register( $wp_customize ) {
      * Social link field generator
      */
 
-     $links = ['facebook','linkedin','github','instagram','x'];
+     $links = ['linkedin','whatsapp','msteams','upwork', 'facebook', 'twitter','instagram'];
 
      foreach($links as $link){
         $wp_customize->add_setting( $link, array(
@@ -106,17 +68,83 @@ function portavue_social_media_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'portavue_social_media_register' );
 
+
 /**
- * Summary of portavue_payment_method_register
+ * Summary of portavue_hero_customization_register
  * @param mixed $wp_customize
  * @return void
  */
-function portavue_payment_method_register( $wp_customize ) {
+function portavue_hero_customization_register($wp_customize){
+    
     // Add a section
-    $wp_customize->add_section( 'portavue_payment_method_section', array(
-        'title'    => __( 'Payment Methods Image', 'portavue' ),
+    $wp_customize->add_section( 'portavue_hero_customization_section', array(
+        'title'    => __( 'Hero Section', 'portavue' ),
         'priority' => 30,
     ) );
+
+    $fields = ['hero_name','hero_text','hero_experiences','hero_projects','hero_clients'];
+
+    foreach($fields as $field){
+       $wp_customize->add_setting( $field, array(
+           'default' => 'Default '.$field,
+           'sanitize_callback' => 'sanitize_text_field',
+       ) );
+       
+       $wp_customize->add_control( $field.'_control', array(
+       'label' => $field,
+       'section' => 'portavue_hero_customization_section', // Or create a new section
+       'settings' => $field,
+       'type' => 'text',
+       ) );
+   }
+
+   /**
+    * Upload Hero Image
+    */
+
+   // Add setting
+   $wp_customize->add_setting( 'portavue_hero_image', array(
+       'default'           => '',
+       'sanitize_callback' => 'esc_url_raw',
+   ) );
+
+   // Add control
+   $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'portavue_hero_image_control', array(
+       'label'    => __( 'Upload Hero Image', 'portavue' ),
+       'section'  => 'portavue_hero_customization_section',
+       'settings' => 'portavue_hero_image',
+   ) ) );
+}
+add_action( 'customize_register', 'portavue_hero_customization_register' );
+
+/**
+ * Summary of portavue_contact_customization_register
+ * @param mixed $wp_customize
+ * @return void
+ */
+function portavue_contact_customization_register($wp_customize){
+    
+    // Add a section
+    $wp_customize->add_section( 'portavue_contact_customization_section', array(
+        'title'    => __( 'Contact Section', 'portavue' ),
+        'priority' => 30,
+    ) );
+
+    $fields = ['contact_title', 'email', 'phone', 'address'];
+
+    foreach($fields as $field){
+       $wp_customize->add_setting( $field, array(
+           'default' => 'Default '.$field,
+           'sanitize_callback' => 'sanitize_text_field',
+       ) );
+       
+       $wp_customize->add_control( $field.'_control', array(
+       'label' => $field,
+       'section' => 'portavue_contact_customization_section', // Or create a new section
+       'settings' => $field,
+       'type' => 'text',
+       ) );
+   }
 
     // Add setting
     $wp_customize->add_setting( 'portavue_payment_method', array(
@@ -125,11 +153,12 @@ function portavue_payment_method_register( $wp_customize ) {
     ) );
 
     // Add control
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'portavue_image_control', array(
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'portavue_payment_method_image_control', array(
         'label'    => __( 'Upload Image', 'portavue' ),
-        'section'  => 'portavue_payment_method_section',
+        'section'  => 'portavue_contact_customization_section',
         'settings' => 'portavue_payment_method',
     ) ) );
-}
-add_action( 'customize_register', 'portavue_payment_method_register' );
 
+
+}
+add_action( 'customize_register', 'portavue_contact_customization_register' );

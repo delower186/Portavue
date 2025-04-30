@@ -18,26 +18,34 @@
   </div>
   <div class="social-links d-flex justify-content-center">
     <?php 
-      $facebook = get_theme_mod( 'facebook' );
       $linkedin = get_theme_mod( 'linkedin' );
-      $github = get_theme_mod( 'github' );
+      $whatsapp = get_theme_mod( 'whatsapp' );
+      $msteams = get_theme_mod( 'msteams' );
+      $upwork = get_theme_mod( 'upwork' );
+      $facebook = get_theme_mod( 'facebook' );
+      $twitter = get_theme_mod( 'twitter' );
       $instagram = get_theme_mod( 'instagram' );
-      $x = get_theme_mod( 'x' );
 
-      if ( $facebook ) {
-        echo '<a href="'.$facebook.'"><i class="bi bi-facebook"></i></a>';
-      }
       if ( $linkedin ) {
         echo '<a href="'.$linkedin.'"><i class="bi bi-linkedin"></i></a>';
       }
-      if ( $github ) {
-        echo '<a href="'.$github.'"><i class="bi bi-github"></i></a>';
+      if ( $whatsapp ) {
+        echo '<a href="'.$whatsapp.'"><i class="bi bi-whatsapp fs-5"></i></a>';
+      }
+      if ( $msteams ) {
+        echo '<a href="'.$msteams.'"><i class="bi bi-microsoft-teams fs-5"></i></a>';
+      }
+      if ( $upwork ) {
+        echo '<a href="'.$upwork.'"><i class="fa-brands fa-square-upwork fa-lg"></i></a>';
+      }
+      if ( $facebook ) {
+        echo '<a href="'.$facebook.'"><i class="bi bi-facebook"></i></a>';
+      }
+      if ( $twitter ) {
+        echo '<a href="'.$twitter.'"><i class="bi bi-twitter-x"></i></a>';
       }
       if ( $instagram ) {
         echo '<a href="'.$instagram.'"><i class="bi bi-instagram"></i></a>';
-      }
-      if ( $x ) {
-        echo '<a href="'.$x.'"><i class="bi bi-twitter-x"></i></a>';
       }
     ?>
   </div>
