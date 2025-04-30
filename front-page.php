@@ -44,7 +44,12 @@ get_header();
           </div>
           <div class="col-lg-6">
             <div class="hero-image">
-              <img src='<?php echo get_template_directory_uri()."/assets/img/profile/profile-1.webp"; ?>' alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">
+              <?php 
+                $image = get_theme_mod( 'portavue_hero_image_setting' );
+                if ( $image ) {
+                    echo '<img src='.esc_url( $image ).' alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">';
+                }
+              ?>
               <div class="shape-1"></div>
               <div class="shape-2"></div>
             </div>
