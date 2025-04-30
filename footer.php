@@ -17,10 +17,29 @@
     <p>© <span>Copyright</span> <strong class="px-1 sitename">Portavue</strong> <span>All Rights Reserved</span></p>
   </div>
   <div class="social-links d-flex justify-content-center">
-    <a href=""><i class="bi bi-twitter-x"></i></a>
-    <a href=""><i class="bi bi-facebook"></i></a>
-    <a href=""><i class="bi bi-instagram"></i></a>
-    <a href=""><i class="bi bi-linkedin"></i></a>
+    <?php 
+      $facebook = get_theme_mod( 'facebook' );
+      $linkedin = get_theme_mod( 'linkedin' );
+      $github = get_theme_mod( 'github' );
+      $instagram = get_theme_mod( 'instagram' );
+      $x = get_theme_mod( 'x' );
+
+      if ( $facebook ) {
+        echo '<a href="'.$facebook.'"><i class="bi bi-facebook"></i></a>';
+      }
+      if ( $linkedin ) {
+        echo '<a href="'.$linkedin.'"><i class="bi bi-linkedin"></i></a>';
+      }
+      if ( $github ) {
+        echo '<a href="'.$github.'"><i class="bi bi-github"></i></a>';
+      }
+      if ( $instagram ) {
+        echo '<a href="'.$instagram.'"><i class="bi bi-instagram"></i></a>';
+      }
+      if ( $x ) {
+        echo '<a href="'.$x.'"><i class="bi bi-twitter-x"></i></a>';
+      }
+    ?>
   </div>
   <div class="credits">
     Developed by <a href="https://sandalia.com.bd/apps">Sandalia Apps</a>

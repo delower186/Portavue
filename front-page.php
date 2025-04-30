@@ -45,7 +45,7 @@ get_header();
           <div class="col-lg-6">
             <div class="hero-image">
               <?php 
-                $image = get_theme_mod( 'portavue_hero_image_setting' );
+                $image = get_theme_mod( 'portavue_hero_image' );
                 if ( $image ) {
                     echo '<img src='.esc_url( $image ).' alt="Portfolio Hero Image" class="img-fluid" data-aos="zoom-out" data-aos-delay="300">';
                 }
