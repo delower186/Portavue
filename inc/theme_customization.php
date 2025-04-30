@@ -105,3 +105,31 @@ function portavue_social_media_register( $wp_customize ) {
 
 }
 add_action( 'customize_register', 'portavue_social_media_register' );
+
+/**
+ * Summary of portavue_payment_method_register
+ * @param mixed $wp_customize
+ * @return void
+ */
+function portavue_payment_method_register( $wp_customize ) {
+    // Add a section
+    $wp_customize->add_section( 'portavue_payment_method_section', array(
+        'title'    => __( 'Payment Methods Image', 'portavue' ),
+        'priority' => 30,
+    ) );
+
+    // Add setting
+    $wp_customize->add_setting( 'portavue_payment_method', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    // Add control
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'portavue_image_control', array(
+        'label'    => __( 'Upload Image', 'portavue' ),
+        'section'  => 'portavue_payment_method_section',
+        'settings' => 'portavue_payment_method',
+    ) ) );
+}
+add_action( 'customize_register', 'portavue_payment_method_register' );
+
