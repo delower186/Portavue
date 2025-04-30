@@ -41,7 +41,7 @@ add_action( 'customize_register', 'portavue_homepage_customizer_register' );
 function portavue_social_media_register( $wp_customize ) {
     // Add a section
     $wp_customize->add_section( 'portavue_social_section', array(
-        'title'    => __( 'Footer Social Links', 'portavue' ),
+        'title'    => __( 'Social Links', 'portavue' ),
         'priority' => 31,
     ) );
 
