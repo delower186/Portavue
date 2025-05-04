@@ -52,16 +52,29 @@
          ?>
         <!-- <img src="assets/img/logo.webp" alt=""> -->
         <h1 class="sitename"><?php echo get_bloginfo('name'); ?></h1>
+        <p><?php bloginfo( 'description' ); ?></p>
       </a>
 
       <nav id="navmenu" class="navmenu">
+
         <?php 
           if ( is_front_page() ) {
-            wp_nav_menu( array( 'theme_location' => 'front-page-menu' ) );
+            wp_nav_menu( array( 
+              'theme_location' => 'front-page-menu',
+              'container'      => false, // removes <div class="menu-container">
+              'menu_class'     => '', // removes class from <ul>
+              'items_wrap'     => '<ul>%3$s</ul>', // removes id/class from <ul> 
+            ) );
           } else {
-            wp_nav_menu( array( 'theme_location' => 'other-page-menu' ) );
+            wp_nav_menu( array( 
+              'theme_location' => 'other-page-menu',
+              'container'      => false, // removes <div class="menu-container">
+              'menu_class'     => '', // removes class from <ul>
+              'items_wrap'     => '<ul>%3$s</ul>', // removes id/class from <ul>
+            ) );
           }
         ?>
+
 
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

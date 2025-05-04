@@ -100,8 +100,11 @@ get_header();
           </script>
           <div class="swiper-wrapper align-items-center">
           <?php
-            $args = ['post_type' => 'client'];
-            $client_query = new WP_Query($args);
+            $client_args = [
+              'post_type' => 'client', 
+              'posts_per_page' => -1
+            ];
+            $client_query = new WP_Query($client_args);
 
             if ($client_query->have_posts()):
 
@@ -271,22 +274,25 @@ get_header();
 
         <div class="row skills-content skills-animation">
             <?php
-              $args = ['post_type' => 'skill'];
-              $client_query = new WP_Query($args);
+              $skill_args = [
+                'post_type' => 'skill', 
+                'posts_per_page' => -1
+              ];
+              $skill_query = new WP_Query($skill_args);
 
-              $post_count = $client_query->found_posts; // Get total count
+              $skill_count = $skill_query->found_posts; // Get total count
 
-              if ($client_query->have_posts() ):
-                  while ($client_query->have_posts()): $client_query->the_post();
-                    if($client_query->found_posts <= 3){
-                      echo '<div class="col-lg-12">';
-                        get_template_part( 'template-parts/content', 'skill');
-                      echo '</div>';
-                    }else{
-                      echo '<div class="col-lg-6">';
-                        get_template_part( 'template-parts/content', 'skill');
-                      echo '</div>';
+              if ($skill_query->have_posts() ):
+                  while ($skill_query->have_posts()): $skill_query->the_post();
+
+                    // No need to check $post_count here
+                    if($skill_count > 1){
+                        echo '<div class="col-lg-6">';
+                    } else {
+                        echo '<div class="col-lg-12">';
                     }
+                    get_template_part( 'template-parts/content', 'skill');
+                    echo '</div>';
                   endwhile;
                   wp_reset_postdata();
               endif;
@@ -324,6 +330,7 @@ get_header();
                   <?php 
                       $args = array(
                         'post_type' => 'experience',
+                        'posts_per_page' => -1
                       );
                       $query = new WP_Query($args);
 
@@ -345,6 +352,7 @@ get_header();
                    <?php 
                       $args = array(
                         'post_type' => 'education',
+                        'posts_per_page' => -1
                       );
                       $query = new WP_Query($args);
 
@@ -413,6 +421,7 @@ get_header();
                       // loop through portfolio and get all of them
                         $args = array(
                           'post_type' => 'portfolio',
+                          'posts_per_page' => -1,
                           'tax_query' => array(
                               array(
                                   'taxonomy' => 'projects',
@@ -478,6 +487,7 @@ get_header();
           <?php 
               $args = array(
                 'post_type' => 'testimonial',
+                'posts_per_page' => -1
               );
               $query = new WP_Query($args);
 
@@ -522,7 +532,10 @@ get_header();
             <div class="row g-4">
                 <?php
                 
-                    $args = ['post_type' => 'service'];
+                    $args = [
+                      'post_type' => 'service', 
+                      'posts_per_page' => -1
+                    ];
 
                     $query = new WP_Query($args);
                     
@@ -563,7 +576,10 @@ get_header();
 
             <div class="faq-container">
               <?php
-                $args = ['post_type' => 'faq'];
+                $args = [
+                  'post_type' => 'faq', 
+                  'posts_per_page' => -1
+                ];
                 $client_query = new WP_Query($args);
 
                 if ($client_query->have_posts()):

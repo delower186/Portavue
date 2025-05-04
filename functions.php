@@ -38,6 +38,10 @@ function portavue_theme_support(){
 
 add_action( "after_setup_theme", "portavue_theme_support");
 
+/**
+ * Register menu
+ */
+
 function portavue_register_menus() {
   register_nav_menus([
     'front-page-menu' => __("Front Page Menu","portavue"),
@@ -45,6 +49,8 @@ function portavue_register_menus() {
   ]);
 }
 add_action( 'after_setup_theme', 'portavue_register_menus' );
+
+
 
 function portavue_register_styles(){
 
