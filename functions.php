@@ -183,3 +183,21 @@ function portavue_custom_comments_callback($comment, $args, $depth) {
 
       <?php
 }
+
+/**
+ * Summary of custom_bloginfo_description
+ * @return string
+ */
+function custom_bloginfo_description() {
+  $description = get_bloginfo('description');
+  
+  // Check if the description contains the site title, and remove it
+  $site_title = get_bloginfo('name');
+  
+  // Remove site title from description (if it exists)
+  if (strpos($description, $site_title) !== false) {
+      $description = str_replace($site_title, '', $description);
+  }
+  
+  return trim($description); // Clean up any extra spaces
+}

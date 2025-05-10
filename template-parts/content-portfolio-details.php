@@ -82,8 +82,17 @@
                     // category
                     $terms = get_the_terms( get_the_ID(), 'projects' );
 
-                    if($terms[0]->name){
-                        echo '<li><strong>Category</strong>'.$terms[0]->name.'</li>';
+                    if ($terms && !is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            // Get the term link
+                            $term_link = get_term_link($term);
+
+                            if (!is_wp_error($term_link)) {
+                                echo '<li><strong>Category</strong><a target="_blank" href="' . esc_url($term_link) . '">' . esc_html($term->name) . '</a></li>';
+                            }
+                        }
+                    } else {
+                        echo '<li><strong>Category</strong></li>';
                     }
 
                     // client

@@ -14,7 +14,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2><?php esc_html_e( 'Nothing Found', 'portavue' ); ?></h2>
+        <span><?php esc_html_e( 'Nothing Found', 'portavue' ); ?></span>
         <div class="title-shape">
           <svg viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M 0,10 C 40,0 60,20 100,10 C 140,0 160,20 200,10" fill="none" stroke="currentColor" stroke-width="2"></path>

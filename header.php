@@ -18,6 +18,16 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta name="description" content="">
   <meta name="keywords" content="">
+  <title>
+    <?php
+    if (is_singular()) {
+        the_title(); // Display the title of the current post or page
+    } else {
+        wp_title('', false); // Display page title or archive title without site name
+    }
+    ?>
+    - <?php echo custom_bloginfo_description(); ?>
+</title>
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -52,7 +62,6 @@
          ?>
         <!-- <img src="assets/img/logo.webp" alt=""> -->
         <h1 class="sitename"><?php echo get_bloginfo('name'); ?></h1>
-        <p><?php bloginfo( 'description' ); ?></p>
       </a>
 
       <nav id="navmenu" class="navmenu">

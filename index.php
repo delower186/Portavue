@@ -11,20 +11,9 @@
  *
  * @package Portavue
  */
-/**
- * Template Name: Portavue_Blog_template
- */
 
 get_header();
 ?>
-
-    <!-- Page Title -->
-    <div class="page-title">
-      <div class="title-wrapper">
-        <h1>Search Results</h1>
-        <p>We found <strong>44</strong> results for your search term <strong>search tern</strong></p>
-      </div>
-    </div><!-- End Page Title -->
 
     <!-- Search Results Posts Section -->
     <section id="search-results-posts" class="search-results-posts section">
@@ -32,12 +21,19 @@ get_header();
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
 
-            <?php
-                if ( have_posts() ) :
+        <?php
+                $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+                $blog_posts = new WP_Query(array(
+                    'post_type'      => 'post',
+                    'posts_per_page' => 1,
+                    'paged'          => $paged,
+                ));
+                if ( $blog_posts->have_posts() ) :
 
                     /* Start the Loop */
-                    while ( have_posts() ) :
-                        the_post();
+                    while ( $blog_posts->have_posts() ) :
+                        $blog_posts->the_post();
 
                         /*
                         * Include the Post-Type-specific template for the content.
@@ -48,7 +44,34 @@ get_header();
 
                     endwhile;
 
-                    the_posts_navigation();
+                    // Custom Pagination
+                    $big = 999999999; // need an unlikely integer
+                    $pagination_links = paginate_links(array(
+                        'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                        'format'    => '?paged=%#%',
+                        'current'   => max(1, get_query_var('paged')),
+                        'total'     => $blog_posts->max_num_pages,
+                        'type'      => 'array',
+                        'prev_text' => '<i class="bi bi-chevron-left"></i>',
+                        'next_text' => '<i class="bi bi-chevron-right"></i>',
+                    ));
+
+                    if (!empty($pagination_links)) : ?>
+                        <!-- Pagination 3 Section -->
+                        <section id="pagination-3" class="pagination-3 section">
+                            <div class="container">
+                                <div class="d-flex justify-content-center">
+                                    <ul>
+                                        <?php foreach ($pagination_links as $link) : ?>
+                                            <li><?php echo str_replace('page-numbers', '', $link); ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    <?php endif;
+
+                wp_reset_postdata();
 
                 else :
 
@@ -61,26 +84,6 @@ get_header();
       </div>
 
     </section><!-- /Search Results Posts Section -->
-
-    <!-- Pagination 3 Section -->
-    <section id="pagination-3" class="pagination-3 section">
-
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <ul>
-            <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#" class="active">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li>...</li>
-            <li><a href="#">10</a></li>
-            <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
-
-    </section><!-- /Pagination 3 Section -->
 
 <?php
 get_footer();

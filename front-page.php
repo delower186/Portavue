@@ -628,14 +628,14 @@ get_header();
                   <span><?php echo get_theme_mod( 'address' );?></span>
                 </div>
               </div>
-                <?php 
-                  $payment_methods = get_theme_mod( 'portavue_payment_method' );
-                  if ( $payment_methods ) {
-                      echo '<div class="section-category mb-3 mt-4">Accepted Payment Methods</div>';
-                      echo '<img class="img-fluid rounded img-thumbnail" src="' . esc_url( $payment_methods ) . '" alt="Payment Methods">';
-                  }
-                ?>
             </div>
+              <?php 
+                $payment_methods = get_theme_mod( 'portavue_payment_method' );
+                if ( $payment_methods ) {
+                    echo '<div class="section-category mb-3 mt-4">Accepted Payment Methods</div>';
+                    echo '<img class="img-fluid rounded img-thumbnail" src="' . esc_url( $payment_methods ) . '" alt="Payment Methods">';
+                }
+              ?>
           </div>
 
           <div class="col-lg-6">
